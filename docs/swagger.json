@@ -1,0 +1,14 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Biblioteca Digital API",
+        "description": "Documentação da API da Biblioteca Digital"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {}
+}
