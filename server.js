@@ -1,17 +1,24 @@
 const express = require('express')
 const connectDB = require('./config/config')
+
+// Importando o swagger para construir a nossa documentação
+const swaggerUi = require('swagger-ui-express'); // <---------------------
+const swaggerDocument = require('./docs/swagger.json'); // <---------------------
+
 // Importando o modelo
 const Car = require('./models/car')
 
 // Importando a rota Car
-const carRoute = require('./routes/carRoutes') // <-----------------------------------
+const carRoute = require('./routes/carRoutes')
 
 const app = express()
 connectDB()
 app.use(express.json())
 
 // Utilizando a rota importada
-app.use('/api', carRoute) // <-----------------------------------
+app.use('/api', carRoute)
+// Incluindo a rota do swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // <---------------------
 
 // Importando o middleware ValidateModelo
 const validateModelo = require('./middlewares/validateModelo')

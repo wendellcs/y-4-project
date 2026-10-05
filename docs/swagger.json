@@ -2,13 +2,53 @@
     "swagger": "2.0",
     "info": {
         "version": "1.0.0",
-        "title": "Biblioteca Digital API",
-        "description": "Documentação da API da Biblioteca Digital"
+        "title": "Loja de carros API",
+        "description": "Documentação da API da nossa loja"
     },
     "host": "localhost:3000",
     "basePath": "/api",
     "schemes": [
         "http"
     ],
-    "paths": {}
+    "paths": {
+        "/cars": {
+            "post": {
+                "summary": "Criar um novo carro",
+                "description": "Adiciona um novo carro db.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Dados do carro a ser criado",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "modelo": {
+                                    "type": "string",
+                                    "example": "O Senhor dos Anéis"
+                                },
+                                "ano": {
+                                    "type": "integer",
+                                    "example": "J.R.R. Tolkien"
+                                },
+                                "marca": {
+                                    "type": "string",
+                                    "example": 1954
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Carro criado com sucesso"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        }
+    }
 }
