@@ -1,4 +1,10 @@
+const express = require('express')
+const router = express.Router()
+
 const validateModelo = require('../middlewares/validateModelo')
 const carController = require('../controllers/carController')
 
-app.post('/cars', validateModelo, carController.createCar)
+
+router.post('/cars', validateModelo, carController.createCar)
+
+module.exports = router
