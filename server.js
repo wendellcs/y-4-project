@@ -10,16 +10,18 @@ const Car = require('./models/car')
 
 // Importando a rota Car
 const carRoute = require('./routes/carRoutes')
+const authRoute = require('./routes/authRoutes')  // <---------------------
 
 const app = express()
 connectDB()
 app.use(express.json())
-app.use(express.urlencoded({ extended: true })) // <---------------------
+app.use(express.urlencoded({ extended: true }))
 
 // Utilizando a rota importada
 app.use('/api', carRoute)
+app.use('/api', authRoute)  // <---------------------
 // Incluindo a rota do swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // <---------------------
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Importando o middleware ValidateModelo
 const validateModelo = require('./middlewares/validateModelo')

@@ -32,7 +32,7 @@ const listCar = async (req, res) => {
 
         let sort = {}
 
-        if (req.query.sortBy){
+        if (req.query.sortBy) {
             const sortField = req.query.sortBy
             const sortOrder = req.query.order === 'desc' ? -1 : 1
             sort[sortField] = sortOrder
@@ -50,3 +50,7 @@ const listCar = async (req, res) => {
 }
 
 module.exports = { createCar, listCar }
+
+// git clone https://github.com/wendellcs/y-4-project.git
+
+// npm install express nodemon swagger-ui-express
