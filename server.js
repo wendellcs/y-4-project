@@ -2,8 +2,8 @@ const express = require('express')
 const connectDB = require('./config/config')
 
 // Importando o swagger para construir a nossa documentação
-const swaggerUi = require('swagger-ui-express'); // <---------------------
-const swaggerDocument = require('./docs/swagger.json'); // <---------------------
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger.json');
 
 // Importando o modelo
 const Car = require('./models/car')
@@ -14,6 +14,7 @@ const carRoute = require('./routes/carRoutes')
 const app = express()
 connectDB()
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })) // <---------------------
 
 // Utilizando a rota importada
 app.use('/api', carRoute)
