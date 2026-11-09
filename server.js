@@ -1,5 +1,13 @@
 const express = require('express')
 const connectDB = require('./config/config')
+const cors = require('cors')  // <---------------------
+
+// Carrega automaticamente as variáveis definidas no arquivo .env e as disponibiliza
+// dentro do process.env
+require('dotenv').config()  // <---------------------
+
+// Pega o valor da variável de ambiente
+const PORT = process.env.PORT  // <---------------------
 
 // Importando o swagger para construir a nossa documentação
 const swaggerUi = require('swagger-ui-express');
@@ -10,16 +18,17 @@ const Car = require('./models/car')
 
 // Importando a rota Car
 const carRoute = require('./routes/carRoutes')
-const authRoute = require('./routes/authRoutes')  // <---------------------
+const authRoute = require('./routes/authRoutes')
 
 const app = express()
 connectDB()
+app.use(cors())  // <---------------------
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Utilizando a rota importada
 app.use('/api', carRoute)
-app.use('/api', authRoute)  // <---------------------
+app.use('/api', authRoute)
 // Incluindo a rota do swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -81,7 +90,7 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Ocorreu um erro no servidor.' })
 })
 
-app.listen(3000, () => { console.log('Server running on port 3000') })
+app.listen(PORT, () => { console.log(`Server running on port ${PORT}`) }) // <---------------------
 
 // try{} catch (){}
 

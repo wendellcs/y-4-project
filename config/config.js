@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 
+const DATABASE_URI = process.env.DATABASE_URI
+
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/carros')
+        await mongoose.connect(DATABASE_URI)
         console.log('MongoDB conectado!')
         // Captura o erro, mostra no console e encerra a conexão
     } catch (e) {
